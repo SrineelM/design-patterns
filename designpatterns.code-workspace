@@ -1,0 +1,25 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.import.gradle.enabled": true,
+        "java.import.gradle.wrapper.enabled": true,
+        "java.import.maven.enabled": false,
+        "java.project.referencedLibraries": {
+            "include": ["lib/**/*.jar"],
+            "exclude": ["lib/excluded/**"]
+        },
+        "[java]": {
+            "editor.defaultFormatter": "redhat.java",
+            "editor.formatOnSave": false,
+            "editor.codeActionsOnSave": {
+                "source.organizeImports": false
+            }
+        },
+        "redhat.telemetry.enabled": false
+    }
+}

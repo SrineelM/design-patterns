@@ -1,0 +1,28 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "",
+            "default": true
+        }
+    ],
+    "java.import.gradle.enabled": true,
+    "java.import.gradle.wrapper.enabled": true,
+    "java.import.maven.enabled": false,
+    "java.project.referencedLibraries": {
+        "include": ["lib/**/*.jar"],
+        "exclude": ["lib/excluded/**"]
+    },
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.saveActions.organizeImports": false,
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java",
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "never"
+        }
+    },
+    "redhat.telemetry.enabled": false,
+    "gradle.nestedProjects": true
+}

@@ -1,0 +1,13 @@
+// Behavioral Patterns Module
+// Chain of Responsibility, Command, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor, Interpreter
+
+dependencies {
+    implementation project(':common')
+    
+    // Spring State Machine for State pattern implementation
+    implementation 'org.springframework.statemachine:spring-statemachine-core'
+    implementation 'org.springframework.statemachine:spring-statemachine-starter'
+    
+    // Spring for event handling and mediation
+    implementation 'org.springframework.boot:spring-boot-starter'
+}

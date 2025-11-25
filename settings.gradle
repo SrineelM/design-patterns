@@ -1,0 +1,10 @@
+// Multi-module Gradle configuration for Gang of Four Design Patterns POC
+// Java 17 + Spring Boot 3.2.x with MapStruct, Spring State Machine, and Lombok
+
+rootProject.name = 'design-patterns'
+
+// Include all submodules
+include 'common'
+include 'creational-patterns'
+include 'structural-patterns'
+include 'behavioral-patterns'

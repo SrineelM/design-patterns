@@ -1,0 +1,10 @@
+// Creational Patterns Module
+// Singleton, Factory Method, Abstract Factory, Builder, Prototype
+
+dependencies {
+    implementation project(':common')
+    
+    // MapStruct for potential data mapping
+    implementation "org.mapstruct:mapstruct:${rootProject.ext.mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${rootProject.ext.mapstructVersion}"
+}

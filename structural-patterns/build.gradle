@@ -1,0 +1,14 @@
+// Structural Patterns Module
+// Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy
+
+dependencies {
+    implementation project(':common')
+    
+    // MapStruct for Adapter pattern bean mapping
+    implementation "org.mapstruct:mapstruct:${rootProject.ext.mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${rootProject.ext.mapstructVersion}"
+    
+    // Spring AOP for Decorator and Proxy patterns
+    implementation 'org.springframework:spring-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+}

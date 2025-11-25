@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug Design Patterns",
+            "request": "launch",
+            "mainClass": "",
+            "projectName": "design-patterns",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "stopOnEntry": false,
+            "internalConsoleOptions": "neverOpen"
+        }
+    ]
+}
