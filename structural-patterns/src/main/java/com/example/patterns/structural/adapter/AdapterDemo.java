@@ -1,5 +1,8 @@
 package com.example.patterns.structural.adapter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,13 +25,15 @@ import java.util.List;
  */
 public class AdapterDemo {
     
+    private static final Logger log = LoggerFactory.getLogger(AdapterDemo.class);
+    
     /**
      * Runs the adapter pattern demonstration.
      *
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        System.out.println("=== Adapter Pattern Demonstration ===\n");
+        log.info("=== Adapter Pattern Demonstration ===\n");
         
         // Create a legacy customer from the old system
         LegacyCustomer legacyCustomer = new LegacyCustomer(
@@ -57,29 +62,29 @@ public class AdapterDemo {
         // Create a service that works with the modern Customer interface
         CustomerService service = new CustomerService();
         
-        System.out.println("1. Processing order for LEGACY customer (via adapter):");
-        System.out.println(service.processOrder(adaptedLegacyCustomer, 149.99));
-        System.out.println();
+        log.info("1. Processing order for LEGACY customer (via adapter):");
+        log.info(service.processOrder(adaptedLegacyCustomer, 149.99));
+        log.info("");
         
-        System.out.println("2. Processing order for MODERN customer:");
-        System.out.println(service.processOrder(modernCustomer, 249.99));
-        System.out.println();
+        log.info("2. Processing order for MODERN customer:");
+        log.info(service.processOrder(modernCustomer, 249.99));
+        log.info("");
         
-        System.out.println("3. Generating reports:");
-        System.out.println(service.generateCustomerReport(adaptedLegacyCustomer));
-        System.out.println(service.generateCustomerReport(modernCustomer));
+        log.info("3. Generating reports:");
+        log.info(service.generateCustomerReport(adaptedLegacyCustomer));
+        log.info(service.generateCustomerReport(modernCustomer));
         
-        System.out.println("4. Sending marketing emails to mixed customer base:");
+        log.info("4. Sending marketing emails to mixed customer base:");
         List<Customer> allCustomers = Arrays.asList(
             adaptedLegacyCustomer,
             modernCustomer
         );
         service.sendMarketingEmail(allCustomers, "20% off all items this week!");
         
-        System.out.println("\n=== Key Points ===");
-        System.out.println("✓ Legacy customer (incompatible format) works via adapter");
-        System.out.println("✓ Modern customer works directly");
-        System.out.println("✓ Service treats both identically through Customer interface");
-        System.out.println("✓ No modification needed to legacy or service code");
+        log.info("\n=== Key Points ===");
+        log.info("✓ Legacy customer (incompatible format) works via adapter");
+        log.info("✓ Modern customer works directly");
+        log.info("✓ Service treats both identically through Customer interface");
+        log.info("✓ No modification needed to legacy or service code");
     }
 }

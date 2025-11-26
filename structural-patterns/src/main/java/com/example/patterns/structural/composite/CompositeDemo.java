@@ -1,5 +1,8 @@
 package com.example.patterns.structural.composite;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 /**
@@ -21,72 +24,74 @@ import java.util.List;
  */
 public class CompositeDemo {
     
+    private static final Logger log = LoggerFactory.getLogger(CompositeDemo.class);
+    
     /**
      * Runs the composite pattern demonstration.
      *
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        System.out.println("=== Composite Pattern Demonstration ===\n");
+        log.info("=== Composite Pattern Demonstration ===");
         
         // Build a file system structure
         Directory root = buildFileSystem();
         
-        System.out.println("1. Display File System Structure:");
-        System.out.println("=".repeat(50));
+        log.info("1. Display File System Structure:");
+        log.info("=".repeat(50));
         root.display("");
         
-        System.out.println("\n2. Calculate Total Size:");
-        System.out.println("=".repeat(50));
-        System.out.printf("Total size of root: %d bytes%n", root.getSize());
-        System.out.printf("Total files: %d%n", root.getFileCount());
-        System.out.printf("Total directories: %d%n", root.getDirectoryCount());
+        log.info("\n2. Calculate Total Size:");
+        log.info("=".repeat(50));
+        log.info("Total size of root: {} bytes", root.getSize());
+        log.info("Total files: {}", root.getFileCount());
+        log.info("Total directories: {}", root.getDirectoryCount());
         
-        System.out.println("\n3. Search Operations:");
-        System.out.println("=".repeat(50));
+        log.info("\n3. Search Operations:");
+        log.info("=".repeat(50));
         
         // Search for Java files
-        System.out.println("Searching for '*.java' files:");
+        log.info("Searching for '*.java' files:");
         List<FileSystemComponent> javaFiles = root.search("*.java");
         for (FileSystemComponent component : javaFiles) {
-            System.out.println("  Found: " + component.getPath());
+            log.info("  Found: {}", component.getPath());
         }
         
         // Search for config files
-        System.out.println("\nSearching for 'config' files:");
+        log.info("\nSearching for 'config' files:");
         List<FileSystemComponent> configFiles = root.search("*config*");
         for (FileSystemComponent component : configFiles) {
-            System.out.println("  Found: " + component.getPath());
+            log.info("  Found: {}", component.getPath());
         }
         
-        System.out.println("\n4. Treating Leaf and Composite Uniformly:");
-        System.out.println("=".repeat(50));
+        log.info("\n4. Treating Leaf and Composite Uniformly:");
+        log.info("=".repeat(50));
         
         // Get a specific directory
         Directory srcDir = (Directory) root.getChildren().get(0);
-        System.out.println("Working with 'src' directory as FileSystemComponent:");
+        log.info("Working with 'src' directory as FileSystemComponent:");
         demonstrateUniformInterface(srcDir);
         
         // Get a specific file
         File file = new File("README.md", 2048, "/project");
-        System.out.println("\nWorking with 'README.md' file as FileSystemComponent:");
+        log.info("\nWorking with 'README.md' file as FileSystemComponent:");
         demonstrateUniformInterface(file);
         
-        System.out.println("\n5. Dynamic Structure Modification:");
-        System.out.println("=".repeat(50));
+        log.info("\n5. Dynamic Structure Modification:");
+        log.info("=".repeat(50));
         
         Directory newDir = new Directory("backup", "/project");
         newDir.add(new File("backup-2024.zip", 1048576, "/project/backup"));
         root.add(newDir);
         
-        System.out.println("Added new 'backup' directory:");
+        log.info("Added new 'backup' directory:");
         root.display("");
         
-        System.out.println("\n=== Key Benefits ===");
-        System.out.println("✓ Uniform treatment of individual and composite objects");
-        System.out.println("✓ Natural representation of hierarchical structures");
-        System.out.println("✓ Easy to add new types of components");
-        System.out.println("✓ Clients simplified - don't need to distinguish leaf from composite");
+        log.info("\n=== Key Benefits ===");
+        log.info("✓ Uniform treatment of individual and composite objects");
+        log.info("✓ Natural representation of hierarchical structures");
+        log.info("✓ Easy to add new types of components");
+        log.info("✓ Clients simplified - don't need to distinguish leaf from composite");
     }
     
     /**
@@ -143,10 +148,9 @@ public class CompositeDemo {
      */
     private static void demonstrateUniformInterface(FileSystemComponent component) {
         // Same operations work for both files and directories
-        System.out.println("  Name: " + component.getName());
-        System.out.println("  Path: " + component.getPath());
-        System.out.println("  Size: " + component.getSize() + " bytes");
-        System.out.println("  Search results for '*.java': " + 
-            component.search("*.java").size() + " matches");
+        log.info("  Name: {}", component.getName());
+        log.info("  Path: {}", component.getPath());
+        log.info("  Size: {} bytes", component.getSize());
+        log.info("  Search results for '*.java': {} matches", component.search("*.java").size());
     }
 }

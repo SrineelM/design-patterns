@@ -1,5 +1,8 @@
 package com.example.patterns.structural.decorator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Demonstration of the Decorator pattern.
  * 
@@ -18,6 +21,8 @@ package com.example.patterns.structural.decorator;
  * @version 1.0.0
  */
 public class DecoratorDemo {
+    
+    private static final Logger log = LoggerFactory.getLogger(DecoratorDemo.class);
     
     /**
      * Runs the decorator pattern demonstration.

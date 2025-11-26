@@ -1,5 +1,8 @@
 package com.example.patterns.creational.factory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.math.BigDecimal;
 
 /**
@@ -21,6 +24,8 @@ import java.math.BigDecimal;
  * @since Java 17
  */
 public class PaymentDemo {
+    
+    private static final Logger log = LoggerFactory.getLogger(PaymentDemo.class);
     
     /**
      * Main method demonstrating the Factory Method pattern with different payment scenarios.

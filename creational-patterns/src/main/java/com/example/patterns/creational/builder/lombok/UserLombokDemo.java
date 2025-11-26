@@ -2,6 +2,9 @@
 
 package com.example.patterns.creational.builder.lombok;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.example.patterns.common.DesignPattern;
 
 /**
@@ -28,6 +31,8 @@ import com.example.patterns.common.DesignPattern;
     description = "Constructs complex objects step by step using Lombok's @Builder annotation",
     category = "Creational")
 public class UserLombokDemo {
+    
+    private static final Logger log = LoggerFactory.getLogger(UserLombokDemo.class);
 
   /**
    * Main method demonstrating the Lombok Builder pattern.

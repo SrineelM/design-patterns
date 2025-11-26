@@ -1,5 +1,8 @@
 package com.example.patterns.structural.bridge;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Demonstration of the Bridge pattern.
  * 
@@ -18,6 +21,8 @@ package com.example.patterns.structural.bridge;
  * @version 1.0.0
  */
 public class BridgeDemo {
+    
+    private static final Logger log = LoggerFactory.getLogger(BridgeDemo.class);
     
     /**
      * Runs the bridge pattern demonstration.

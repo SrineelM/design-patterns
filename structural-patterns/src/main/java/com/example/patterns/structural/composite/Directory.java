@@ -1,5 +1,8 @@
 package com.example.patterns.structural.composite;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.example.patterns.common.DesignPattern;
 
 import java.util.ArrayList;
@@ -29,6 +32,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
     description = "Composes file system elements into tree structure"
 )
 public class Directory implements FileSystemComponent {
+    
+    private static final Logger log = LoggerFactory.getLogger(Directory.class);
     
     private final String name;
     private final String parentPath;
@@ -93,11 +98,11 @@ public class Directory implements FileSystemComponent {
     
     @Override
     public void display(String indent) {
-        System.out.printf("%s[DIR] %s/ (%s, %d items)%n", 
-            indent, 
-            name, 
+        log.info("{} [DIR] {}/ ({}, {} items)",
+            indent,
+            name,
             formatSize(getSize()),
-            children.size());
+            getChildren().size());
         
         // Recursively display all children
         for (FileSystemComponent child : children) {

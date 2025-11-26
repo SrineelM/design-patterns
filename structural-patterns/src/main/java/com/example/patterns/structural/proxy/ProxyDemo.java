@@ -1,5 +1,8 @@
 package com.example.patterns.structural.proxy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Set;
 
 /**
@@ -25,107 +28,109 @@ import java.util.Set;
  */
 public class ProxyDemo {
     
+    private static final Logger log = LoggerFactory.getLogger(ProxyDemo.class);
+    
     /**
      * Runs the proxy pattern demonstration.
      *
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        System.out.println("=== Proxy Pattern Demonstration ===\n");
+        log.info("=== Proxy Pattern Demonstration ===\n");
         
         demonstrateVirtualProxy();
-        System.out.println("\n" + "=".repeat(60) + "\n");
+        log.info("\n" + "=".repeat(60) + "\n");
         
         demonstrateCachingProxy();
-        System.out.println("\n" + "=".repeat(60) + "\n");
+        log.info("\n" + "=".repeat(60) + "\n");
         
         demonstrateProtectionProxy();
         
-        System.out.println("\n=== Key Benefits ===");
-        System.out.println("✓ Controls access to objects");
-        System.out.println("✓ Adds functionality without modifying real objects");
-        System.out.println("✓ Can improve performance (lazy loading, caching)");
-        System.out.println("✓ Can enforce security (protection proxy)");
-        System.out.println("✓ Transparent to clients");
+        log.info("\n=== Key Benefits ===");
+        log.info("✓ Controls access to objects");
+        log.info("✓ Adds functionality without modifying real objects");
+        log.info("✓ Can improve performance (lazy loading, caching)");
+        log.info("✓ Can enforce security (protection proxy)");
+        log.info("✓ Transparent to clients");
     }
     
     /**
      * Demonstrates virtual proxy (lazy loading).
      */
     private static void demonstrateVirtualProxy() {
-        System.out.println("1. VIRTUAL PROXY - Lazy Loading");
-        System.out.println("=".repeat(60));
+        log.info("1. VIRTUAL PROXY - Lazy Loading");
+        log.info("=".repeat(60));
         
         // Create proxies - instant, no loading
-        System.out.println("\nCreating 3 image proxies...");
+        log.info("\nCreating 3 image proxies...");
         Image image1 = new ImageProxy("photo1.jpg");
         Image image2 = new ImageProxy("photo2.jpg");
         Image image3 = new ImageProxy("photo3.jpg");
         
         // Can access metadata without loading full image
-        System.out.println("\nAccessing metadata (no loading required):");
-        System.out.printf("Image 1: %s, Size: %d bytes%n", 
+        log.info("\nAccessing metadata (no loading required):");
+        log.info("Image 1: {}, Size: {} bytes", 
             image1.getFilename(), image1.getFileSize());
-        System.out.printf("Image 2: %s, Dimensions: %s%n",
+        log.info("Image 2: {}, Dimensions: {}",
             image2.getFilename(), image2.getDimensions());
         
         // Display triggers lazy loading
-        System.out.println("\nDisplaying image1 (triggers loading):");
+        log.info("\nDisplaying image1 (triggers loading):");
         image1.display();
         
-        System.out.println("\nDisplaying image1 again (already loaded):");
+        log.info("\nDisplaying image1 again (already loaded):");
         image1.display();
         
-        System.out.println("\nNote: image3 was never displayed, so never loaded!");
-        System.out.println("This saves memory and loading time.");
+        log.info("\nNote: image3 was never displayed, so never loaded!");
+        log.info("This saves memory and loading time.");
     }
     
     /**
      * Demonstrates caching proxy.
      */
     private static void demonstrateCachingProxy() {
-        System.out.println("2. CACHING PROXY - Performance Optimization");
-        System.out.println("=".repeat(60));
+        log.info("2. CACHING PROXY - Performance Optimization");
+        log.info("=".repeat(60));
         
         Database db = new CachingDatabaseProxy();
         
-        System.out.println("\nExecuting queries...\n");
+        log.info("\nExecuting queries...\n");
         
         // First query - cache miss
-        System.out.println("Query 1 (first time):");
+        log.info("Query 1 (first time):");
         db.query("SELECT * FROM users WHERE id = 1");
         
-        System.out.println("\nQuery 2 (first time):");
+        log.info("\nQuery 2 (first time):");
         db.query("SELECT * FROM products WHERE price > 100");
         
         // Repeat queries - cache hits
-        System.out.println("\nQuery 1 (again - should be cached):");
+        log.info("\nQuery 1 (again - should be cached):");
         db.query("SELECT * FROM users WHERE id = 1");
         
-        System.out.println("\nQuery 2 (again - should be cached):");
+        log.info("\nQuery 2 (again - should be cached):");
         db.query("SELECT * FROM products WHERE price > 100");
         
-        System.out.println("\nQuery 1 (again - still cached):");
+        log.info("\nQuery 1 (again - still cached):");
         db.query("SELECT * FROM users WHERE id = 1");
         
-        System.out.println("\n" + db.getStatistics());
+        log.info("\n{}", db.getStatistics());
         
-        System.out.println("Note: Cached queries return instantly!");
-        System.out.println("This reduces database load and improves performance.");
+        log.info("Note: Cached queries return instantly!");
+        log.info("This reduces database load and improves performance.");
     }
     
     /**
      * Demonstrates protection proxy (access control).
      */
     private static void demonstrateProtectionProxy() {
-        System.out.println("3. PROTECTION PROXY - Access Control");
-        System.out.println("=".repeat(60));
+        log.info("3. PROTECTION PROXY - Access Control");
+        log.info("=".repeat(60));
         
         Set<String> editors = Set.of("alice", "bob");
         Set<String> deleters = Set.of("admin");
         
         // Alice can edit
-        System.out.println("\nAlice (editor) accessing document:");
+        log.info("\nAlice (editor) accessing document:");
         Document doc1 = new ProtectedDocumentProxy(
             "report.txt", "alice", editors, deleters
         );
@@ -136,11 +141,11 @@ public class ProxyDemo {
         try {
             doc1.delete();
         } catch (SecurityException e) {
-            System.out.println("Expected: " + e.getMessage());
+            log.info("Expected: {}", e.getMessage());
         }
         
         // Charlie (regular user) - limited access
-        System.out.println("\nCharlie (regular user) accessing document:");
+        log.info("\nCharlie (regular user) accessing document:");
         Document doc2 = new ProtectedDocumentProxy(
             "report.txt", "charlie", editors, deleters
         );
@@ -150,11 +155,11 @@ public class ProxyDemo {
         try {
             doc2.edit("Trying to edit");
         } catch (SecurityException e) {
-            System.out.println("Expected: " + e.getMessage());
+            log.info("Expected: {}", e.getMessage());
         }
         
         // Admin - full access
-        System.out.println("\nAdmin accessing document:");
+        log.info("\nAdmin accessing document:");
         Document doc3 = new ProtectedDocumentProxy(
             "report.txt", "admin", editors, deleters
         );
@@ -162,7 +167,7 @@ public class ProxyDemo {
         doc3.view();
         doc3.delete();
         
-        System.out.println("\nNote: Protection proxy enforces security without");
-        System.out.println("modifying the real document class!");
+        log.info("\nNote: Protection proxy enforces security without");
+        log.info("modifying the real document class!");
     }
 }

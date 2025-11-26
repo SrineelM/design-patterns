@@ -2,6 +2,9 @@
 
 package com.example.patterns.creational.abstractfactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.example.patterns.common.DesignPattern;
 
 /**
@@ -34,6 +37,8 @@ import com.example.patterns.common.DesignPattern;
     description = "Provides interface for creating families of related objects",
     category = "Creational")
 public class UIApplication {
+    
+    private static final Logger log = LoggerFactory.getLogger(UIApplication.class);
 
   private final UIComponentFactory factory;
   private final Button button;

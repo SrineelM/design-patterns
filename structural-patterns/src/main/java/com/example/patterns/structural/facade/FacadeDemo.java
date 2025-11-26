@@ -1,5 +1,8 @@
 package com.example.patterns.structural.facade;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Demonstration of the Facade pattern.
  * 
@@ -19,26 +22,28 @@ package com.example.patterns.structural.facade;
  */
 public class FacadeDemo {
     
+    private static final Logger log = LoggerFactory.getLogger(FacadeDemo.class);
+    
     /**
      * Runs the facade pattern demonstration.
      *
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
-        System.out.println("=== Facade Pattern Demonstration ===\n");
+        log.info("=== Facade Pattern Demonstration ===\n");
         
         // Create the facade
         OrderFacade orderFacade = new OrderFacade();
         
-        System.out.println("WITHOUT FACADE: Client must interact with all subsystems");
-        System.out.println("=".repeat(60));
+        log.info("WITHOUT FACADE: Client must interact with all subsystems");
+        log.info("=".repeat(60));
         demonstrateWithoutFacade();
         
-        System.out.println("\n\nWITH FACADE: Client uses simple interface");
-        System.out.println("=".repeat(60));
+        log.info("\n\nWITH FACADE: Client uses simple interface");
+        log.info("=".repeat(60));
         demonstrateWithFacade(orderFacade);
         
-        System.out.println("\n\n=== Additional Orders ===");
+        log.info("\n\n=== Additional Orders ===");
         
         // Success case
         System.out.println("\nOrder 2: Successful Order");

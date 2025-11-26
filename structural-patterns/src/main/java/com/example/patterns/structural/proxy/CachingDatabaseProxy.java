@@ -1,5 +1,8 @@
 package com.example.patterns.structural.proxy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.example.patterns.common.DesignPattern;
 
 import java.util.HashMap;
@@ -28,6 +31,8 @@ import java.util.Map;
     description = "Caches database query results to improve performance"
 )
 public class CachingDatabaseProxy implements Database {
+    
+    private static final Logger log = LoggerFactory.getLogger(CachingDatabaseProxy.class);
     
     private final RealDatabase realDatabase;
     private final Map<String, List<String>> cache;

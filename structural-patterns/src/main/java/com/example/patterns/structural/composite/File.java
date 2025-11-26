@@ -1,5 +1,8 @@
 package com.example.patterns.structural.composite;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -14,6 +17,8 @@ import java.util.regex.Pattern;
  * @version 1.0.0
  */
 public class File implements FileSystemComponent {
+    
+    private static final Logger log = LoggerFactory.getLogger(File.class);
     
     private final String name;
     private final long size;
@@ -44,9 +49,9 @@ public class File implements FileSystemComponent {
     
     @Override
     public void display(String indent) {
-        System.out.printf("%s[FILE] %s (%s)%n", 
-            indent, 
-            name, 
+        log.info("{} [FILE] {} ({})",
+            indent,
+            name,
             formatSize(size));
     }
     

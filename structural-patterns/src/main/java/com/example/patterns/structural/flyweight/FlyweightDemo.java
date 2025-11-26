@@ -1,5 +1,8 @@
 package com.example.patterns.structural.flyweight;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Demonstration of the Flyweight pattern.
  * 
@@ -18,6 +21,8 @@ package com.example.patterns.structural.flyweight;
  * @version 1.0.0
  */
 public class FlyweightDemo {
+    
+    private static final Logger log = LoggerFactory.getLogger(FlyweightDemo.class);
     
     /**
      * Runs the flyweight pattern demonstration.
