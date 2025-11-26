@@ -36,4 +36,11 @@ public interface Image {
      * @return the file size
      */
     long getFileSize();
+    
+    /**
+     * Gets information about the image.
+     *
+     * @return the image information
+     */
+    String getInfo();
 }

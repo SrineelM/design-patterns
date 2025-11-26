@@ -22,7 +22,10 @@ class CustomerAdapterTest {
                 "John",
                 "Doe",
                 "john.doe@example.com",
-                "123 Main St"
+                "555-1234",
+                "123 Main St",
+                "Springfield",
+                "12345"
             );
             
             // Act
@@ -55,7 +58,10 @@ class CustomerAdapterTest {
                 "John",
                 "Doe",
                 "john.doe@example.com",
-                "123 Main St"
+                "555-1234",
+                "123 Main St",
+                "Springfield",
+                "12345"
             );
             Customer adapter = new CustomerAdapter(legacyCustomer);
             

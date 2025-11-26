@@ -17,7 +17,7 @@ class FileSystemCompositeTest {
         @DisplayName("Should create file with correct properties")
         void shouldCreateFile_withCorrectProperties() {
             // Act
-            File file = new File("test.txt", "/home/user", 1024);
+            File file = new File("test.txt", 1024, "/home/user");
             
             // Assert
             assertThat(file.getName()).isEqualTo("test.txt");
@@ -29,8 +29,8 @@ class FileSystemCompositeTest {
         @DisplayName("File should not support add operation")
         void file_shouldNotSupportAddOperation() {
             // Arrange
-            File file = new File("test.txt", "/home/user", 1024);
-            File childFile = new File("child.txt", "/home/user", 512);
+            File file = new File("test.txt", 1024, "/home/user");
+            File childFile = new File("child.txt", 512, "/home/user");
             
             // Act & Assert
             assertThatThrownBy(() -> file.add(childFile))
@@ -41,8 +41,8 @@ class FileSystemCompositeTest {
         @DisplayName("File should not support remove operation")
         void file_shouldNotSupportRemoveOperation() {
             // Arrange
-            File file = new File("test.txt", "/home/user", 1024);
-            File childFile = new File("child.txt", "/home/user", 512);
+            File file = new File("test.txt", 1024, "/home/user");
+            File childFile = new File("child.txt", 512, "/home/user");
             
             // Act & Assert
             assertThatThrownBy(() -> file.remove(childFile))
@@ -72,7 +72,7 @@ class FileSystemCompositeTest {
         void shouldAddFile_toDirectory() {
             // Arrange
             Directory directory = new Directory("docs", "/home/user");
-            File file = new File("readme.txt", "/home/user/docs", 1024);
+            File file = new File("readme.txt", 1024, "/home/user/docs");
             
             // Act
             directory.add(file);
@@ -87,7 +87,7 @@ class FileSystemCompositeTest {
         void shouldRemoveFile_fromDirectory() {
             // Arrange
             Directory directory = new Directory("docs", "/home/user");
-            File file = new File("readme.txt", "/home/user/docs", 1024);
+            File file = new File("readme.txt", 1024, "/home/user/docs");
             directory.add(file);
             
             // Act
@@ -141,9 +141,9 @@ class FileSystemCompositeTest {
             Directory docs = new Directory("docs", "/root");
             Directory images = new Directory("images", "/root");
             
-            File readme = new File("readme.txt", "/root/docs", 1024);
-            File guide = new File("guide.txt", "/root/docs", 2048);
-            File photo = new File("photo.jpg", "/root/images", 4096);
+            File readme = new File("readme.txt", 1024, "/root/docs");
+            File guide = new File("guide.txt", 2048, "/root/docs");
+            File photo = new File("photo.jpg", 4096, "/root/images");
             
             docs.add(readme);
             docs.add(guide);
@@ -164,7 +164,7 @@ class FileSystemCompositeTest {
             // Arrange
             Directory root = new Directory("root", "/");
             Directory docs = new Directory("docs", "/root");
-            File readme = new File("readme.txt", "/root/docs", 1024);
+            File readme = new File("readme.txt", 1024, "/root/docs");
             
             docs.add(readme);
             root.add(docs);
@@ -188,7 +188,7 @@ class FileSystemCompositeTest {
         @DisplayName("Should treat files and directories uniformly")
         void shouldTreatFilesAndDirectories_uniformly() {
             // Arrange
-            FileSystemComponent file = new File("test.txt", "/home/user", 1024);
+            FileSystemComponent file = new File("test.txt", 1024, "/home/user");
             FileSystemComponent directory = new Directory("docs", "/home/user");
             
             // Act & Assert
@@ -208,7 +208,7 @@ class FileSystemCompositeTest {
         System.setOut(new java.io.PrintStream(output));
         
         try {
-            component.display(0);
+            component.display("");
             return output.toString();
         } finally {
             System.setOut(originalOut);

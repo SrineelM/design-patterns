@@ -95,4 +95,23 @@ public class File implements FileSystemComponent {
             .replace("*", ".*");
         return Pattern.matches(regexPattern, name);
     }
+    
+    /**
+     * Add operation is not supported for files.
+     * @param component the component to add
+     * @throws UnsupportedOperationException always
+     */
+    public void add(FileSystemComponent component) {
+        throw new UnsupportedOperationException("Cannot add components to a file");
+    }
+    
+    /**
+     * Remove operation is not supported for files.
+     * @param component the component to remove
+     * @return never returns
+     * @throws UnsupportedOperationException always
+     */
+    public boolean remove(FileSystemComponent component) {
+        throw new UnsupportedOperationException("Cannot remove components from a file");
+    }
 }

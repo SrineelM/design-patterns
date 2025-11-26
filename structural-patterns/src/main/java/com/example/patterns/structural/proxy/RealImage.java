@@ -71,4 +71,10 @@ public class RealImage implements Image {
     public long getFileSize() {
         return fileSize;
     }
+    
+    @Override
+    public String getInfo() {
+        return String.format("Image: %s, Size: %d bytes, Dimensions: %s", 
+            filename, fileSize, dimensions);
+    }
 }

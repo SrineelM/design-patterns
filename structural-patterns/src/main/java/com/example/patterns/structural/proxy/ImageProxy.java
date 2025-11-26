@@ -80,4 +80,14 @@ public class ImageProxy implements Image {
     public boolean isLoaded() {
         return realImage != null;
     }
+    
+    @Override
+    public String getInfo() {
+        // Can return info without loading the real image
+        if (realImage == null) {
+            return String.format("Image: %s, Size: unknown size, Not loaded yet", filename);
+        } else {
+            return realImage.getInfo();
+        }
+    }
 }
