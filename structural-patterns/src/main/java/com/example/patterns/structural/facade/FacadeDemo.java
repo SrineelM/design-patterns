@@ -32,20 +32,25 @@ public class FacadeDemo {
     public static void main(String[] args) {
         log.info("=== Facade Pattern Demonstration ===\n");
         
-        // Create the facade
+        // 1. Create the Facade object.
+        // This single 'OrderFacade' object will be our simplified entry point
+        // to a complex subsystem of inventory, payment, shipping, and notifications.
         OrderFacade orderFacade = new OrderFacade();
         
         log.info("WITHOUT FACADE: Client must interact with all subsystems");
         log.info("=".repeat(60));
+        // This method explains the complex, tightly-coupled way of doing things
+        // if we didn't have a facade.
         demonstrateWithoutFacade();
         
         log.info("\n\nWITH FACADE: Client uses simple interface");
         log.info("=".repeat(60));
+        // This method shows how the facade simplifies everything for the client.
         demonstrateWithFacade(orderFacade);
         
         log.info("\n\n=== Additional Orders ===");
         
-        // Success case
+        // --- Example 2: Another successful order ---
         System.out.println("\nOrder 2: Successful Order");
         OrderResult result2 = orderFacade.placeOrder(
             "CUST-002",
@@ -60,7 +65,7 @@ public class FacadeDemo {
         );
         printResult(result2);
         
-        // Failure case - invalid payment
+        // --- Example 3: A failed order due to invalid payment details ---
         System.out.println("\nOrder 3: Failed Order (Invalid Payment)");
         OrderResult result3 = orderFacade.placeOrder(
             "CUST-003",
@@ -88,6 +93,8 @@ public class FacadeDemo {
      * Shows the complexity client must deal with.
      */
     private static void demonstrateWithoutFacade() {
+        // In a real-world scenario without a facade, the client code would be here.
+        // It would need to create and manage multiple service objects.
         System.out.println("Client must manually coordinate 4 subsystems:");
         System.out.println("  1. InventoryService - check and reserve");
         System.out.println("  2. PaymentService - validate, authorize, capture");
@@ -95,7 +102,7 @@ public class FacadeDemo {
         System.out.println("  4. NotificationService - send confirmations");
         System.out.println("\nClient code would need:");
         System.out.println("  - Create instances of all 4 services");
-        System.out.println("  - Call 10+ methods in correct order");
+        System.out.println("  - Call multiple methods in the correct sequence");
         System.out.println("  - Handle errors and rollback at each step");
         System.out.println("  - Know internal details of each subsystem");
         System.out.println("\nThis creates tight coupling and complex client code!");
@@ -108,8 +115,11 @@ public class FacadeDemo {
      * @param facade the order facade
      */
     private static void demonstrateWithFacade(OrderFacade facade) {
-        System.out.println("Client makes ONE simple call:\n");
+        System.out.println("Client makes just ONE simple call to the facade:\n");
         
+        // All the complex steps (checking inventory, processing payment, arranging shipping)
+        // are hidden behind this single, easy-to-understand method.
+        // This is the core benefit of the Facade pattern.
         OrderResult result = facade.placeOrder(
             "CUST-001",
             "alice@example.com",
@@ -124,6 +134,7 @@ public class FacadeDemo {
         
         printResult(result);
         
+        // The facade encapsulates the complex logic.
         System.out.println("\nFacade handles:");
         System.out.println("  ✓ All subsystem coordination");
         System.out.println("  ✓ Error handling and rollback");
@@ -137,6 +148,7 @@ public class FacadeDemo {
      * @param result the order result
      */
     private static void printResult(OrderResult result) {
+        // A simple helper method to format and display the outcome of the order placement.
         System.out.println("\n" + "-".repeat(60));
         if (result.success()) {
             System.out.println("✓ SUCCESS: " + result.message());
