@@ -124,6 +124,45 @@ gradle test jacocoTestReport
 | **Visitor** | Separate algorithm from structure | Visitor interface | Pattern matching |
 | **Interpreter** | Define grammar and interpreter | Expression tree | SpEL integration |
 
+## 🎓 Student Notes
+
+Brief explanations to help you remember each pattern:
+
+### Creational
+| Pattern | Student Note |
+|---------|--------------|
+| **Singleton** | Like a Highlander: "There can be only one." Ensures one instance handles all requests (e.g., Database connection). |
+| **Factory Method** | Hires a specialist. You ask for a "Payment Processor", and the factory gives you PayPal or Stripe logic based on your request. |
+| **Abstract Factory** | A kit of matching parts. Ensures you get a "Mac Button" and "Mac Checkbox" together, not mixed with Windows parts. |
+| **Builder** | Like ordering at Subway. You build a complex object (sandwich) step-by-step (bread, meat, veggies) to get exactly what you want. |
+| **Prototype** | The "Clone Trooper". Instead of building a complex object from scratch, you copy an existing one and tweak it. |
+
+### Structural
+| Pattern | Student Note |
+|---------|--------------|
+| **Adapter** | The travel plug. Lets your square-peg code fit into a round-hole system (e.g., XML data into a JSON parser). |
+| **Bridge** | Separating the "remote" from the "TV". You can change the TV (implementation) or the remote (abstraction) independently. |
+| **Composite** | Files and Folders. Treat a single file and a folder of files the same way (e.g., "get size"). |
+| **Decorator** | Putting clothes on. The person (object) stays the same, but you add layers (functionality) like a jacket or hat dynamically. |
+| **Facade** | The "One-Click Buy" button. Hides the messy details of inventory, payment, and shipping behind one simple interface. |
+| **Flyweight** | The cafeteria seating. Many people share the same chairs. Saves memory by sharing common state among many objects. |
+| **Proxy** | The bouncer. Controls access to the club (real object), checking ID or handling logistics before letting you in. |
+
+### Behavioral
+| Pattern | Student Note |
+|---------|--------------|
+| **Chain of Responsibility** | Tech Support tiers. If Tier 1 can't fix it, they pass it to Tier 2, then Tier 3, until someone handles it. |
+| **Command** | The waiter's order pad. Takes your order (request), wraps it up, and passes it to the kitchen (receiver) later. Supports undo! |
+| **Iterator** | The TV channel surfer. Lets you go through all channels (elements) one by one without knowing how the TV works inside. |
+| **Mediator** | The Air Traffic Tower. Planes don't talk to each other; they talk to the tower, which coordinates everyone to prevent crashes. |
+| **Memento** | A video game "Save Point". Lets you save your state now so you can reload it later if you die. |
+| **Observer** | The Newsletter. You subscribe, and when there's news, the publisher sends it to you and all other subscribers automatically. |
+| **State** | Dr. Jekyll and Mr. Hyde. The object changes its personality (behavior) completely when its internal state changes. |
+| **Strategy** | The nav system route. Choose "Fastest", "Shortest", or "No Tolls". Same destination, different way to get there. |
+| **Template Method** | Baking a cake. The recipe (base class) sets the steps (mix, bake, cool), but you choose the flavor (chocolate vs vanilla). |
+| **Visitor** | The tax auditor. The building (structure) stays the same, but the auditor (visitor) walks through performing a new operation. |
+| **Interpreter** | A music sheet reader. Translates symbols (notes) into actions (sounds) based on defined grammar rules. |
+
 ## 💡 Key Features
 
 ### Java 17 Features Used
